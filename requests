@@ -1,5 +1,5 @@
-#extração dos seguintes dados: Título, Autor(es), 
-#Orientador(es), Palavras-chave, Data do documento, Resumo. 
+#extração dos seguintes dados: título, autor(es), 
+#orientador(es), palavras-chave, data do documento e resumo. 
 
 import requests
 from bs4 import BeautifulSoup
