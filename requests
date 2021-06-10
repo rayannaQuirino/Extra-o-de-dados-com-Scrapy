@@ -1,0 +1,36 @@
+#extração dos seguintes dados: Título, Autor(es), 
+#Orientador(es), Palavras-chave, Data do documento, Resumo. 
+
+import requests
+from bs4 import BeautifulSoup
+
+responde = requests.get('https://repositorio.utfpr.edu.br/jspui/handle/1/20556')  
+content = responde.content
+
+site = BeautifulSoup(content, 'html.parser')
+#print(site.prettify())
+
+#Titulo 
+title = site.find('td', attrs={'class':'metadataFieldValue dc_title'}) 
+print(title.prettify())
+
+#Autores 
+authors = site.find('td',attrs={'class': 'metadataFieldValue dc_creator'})
+authors2 = authors.find('a',attrs={'class':'author'})
+print(authors2.prettify())
+
+#Orientadores
+advisor =site.find('td',attrs={'class':'metadataFieldValue dc_contributor_advisor1'})
+print(advisor.prettify())
+
+#Palavras-chave 
+keyWords = site.find('td',attrs={'class':'metadataFieldValue dc_subject'})
+print(keyWords.prettify())
+
+#Date 
+date = site.find('td',attrs={'class':'metadataFieldValue dc_date_issued'})
+print(date.prettify())
+
+#Resumo
+abstrat = site.find('td',attrs={'class':'metadataFieldValue dc_description_resumo'})
+print(abstrat.prettify())
