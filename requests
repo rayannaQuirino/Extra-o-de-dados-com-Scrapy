@@ -31,6 +31,6 @@ print(keyWords.prettify())
 date = site.find('td',attrs={'class':'metadataFieldValue dc_date_issued'})
 print(date.prettify())
 
-#Resumo
+#resumo
 abstrat = site.find('td',attrs={'class':'metadataFieldValue dc_description_resumo'})
 print(abstrat.prettify())
