@@ -1,0 +1,30 @@
+import requests
+from bs4 import BeautifulSoup
+
+#extração dos seguintes dados de páginas diferentes: título, autor(es), 
+#orientador(es), palavras-chave, data do documento e resumo. 
+
+numbers=[]
+
+for i in range(2369,2379):   #teste de verificação com 10 paginas  
+    numbers.append(str(i))  
+
+def scrap_number_info(number: str):
+    print(f'\n-Packing {number} info')
+    
+    number_url = f'https://repositorio.utfpr.edu.br/jspui/handle/1/{number}'
+    page = requests.get(number_url)
+    
+    soup = BeautifulSoup(page.content,'html.parser')
+    title = soup.find('td', attrs={'class':'metadataFieldValue dc_title'}) 
+    authors = soup.find('td',attrs={'class': 'metadataFieldValue dc_creator'})
+    advisor =soup.find('td',attrs={'class':'metadataFieldValue dc_contributor_advisor1'})
+    keyWords = soup.find('td',attrs={'class':'metadataFieldValue dc_subject'})
+    date = soup.find('td',attrs={'class':'metadataFieldValue dc_date_issued'})
+    abstrat = soup.find('td',attrs={'class':'metadataFieldValue dc_description_resumo'})
+    print("Título: "+ title.text + "\n-" + "Autores: "+ authors.text + "\n-" + "Orientadores: " + advisor.text + "\n-"+ "Palavras-chave: " 
+         +keyWords.text + "\n-"  "Data: " + date.text + "\n-" +"Resumo: "+ abstrat.text )
+    
+
+for i in numbers:
+    scrap_number_info(i)
