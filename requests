@@ -27,10 +27,10 @@ print(advisor.prettify())
 keyWords = site.find('td',attrs={'class':'metadataFieldValue dc_subject'})
 print(keyWords.prettify())
 
-#Date 
+#Data 
 date = site.find('td',attrs={'class':'metadataFieldValue dc_date_issued'})
 print(date.prettify())
 
-#resumo
+#Resumo
 abstrat = site.find('td',attrs={'class':'metadataFieldValue dc_description_resumo'})
 print(abstrat.prettify())
